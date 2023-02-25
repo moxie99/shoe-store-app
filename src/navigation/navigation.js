@@ -7,8 +7,13 @@ import ProductDetailsScreen from "../screens/productDetailsScreen"
 import ShoppingCart from "../screens/ShoppingCart"
 import { FontAwesome5 } from "@expo/vector-icons"
 
+import { useSelector } from "react-redux"
+import { selectNumberOfItems } from "../store/cartSlice"
+
 const Stack = createNativeStackNavigator()
+
 const Navigation = () => {
+  const numberOfItems = useSelector(selectNumberOfItems)
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -29,17 +34,23 @@ const Navigation = () => {
                   position: "relative",
                 }}
               >
-                <FontAwesome5 name="shopping-cart" size={18} color="purple" />
+                <FontAwesome5
+                  name="shopping-cart"
+                  size={18}
+                  color="purple"
+                  style={{ paddingRight: 2 }}
+                />
                 <Text
                   style={{
                     color: "purple",
                     fontSize: 18,
                     position: "absolute",
-                    right: 8,
+                    right: 2,
+                    top: 2,
                     fontWeight: "500",
                   }}
                 >
-                  1
+                  {numberOfItems}
                 </Text>
               </Pressable>
             ),
