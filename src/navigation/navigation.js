@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native"
 import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
@@ -48,7 +48,10 @@ const Navigation = () => {
         <Stack.Screen
           name="ProductsDetails"
           component={ProductDetailsScreen}
-          options={{ presentation: "modal" }}
+          options={{
+            presentation:
+              Platform.OS === "android" ? "fullScreenModal" : "modal",
+          }}
         />
         <Stack.Screen name="Cart" component={ShoppingCart} />
       </Stack.Navigator>
